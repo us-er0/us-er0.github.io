@@ -1,4 +1,3 @@
-import Decimal from 'decimal.js';
 let E=Decimal
 let canvas=document.getElementById("cav");
 let res=[E(1)]
