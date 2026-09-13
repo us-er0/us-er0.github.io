@@ -13,7 +13,7 @@ function getRecA(){
         E(upg[0].nowL)
     )
     .mul(
-        E(upg[1].nowL)
+        E(upg[1].nowL).add(1)
         .pow(E(2))
     )
     .mul(
