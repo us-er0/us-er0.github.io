@@ -36,7 +36,7 @@ function init(){
                     flag1=true
                     let flag=false;
                     if(a.need().gt(res[0])){flag=true;break;}
-                    if(upg[i].nowL==upg[i].maxL){flag=true;}
+                    if(upg[i].nowL===upg[i].maxL){flag=true;}
                     if(!flag){
                         res[0]=res[0].sub(a.need());
                         upg[i].nowL++

@@ -64,7 +64,7 @@ let upg=[
     }
 ]
 const ctx=canvas.getContext('2d');
-let dx=0,dy=0;
+let dx=50,dy=50;
 let npx=0,npy=0;
 let mousePressed = false;
 let mouseMoved = false;
