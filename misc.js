@@ -1,0 +1,7 @@
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+function inSquare(x,y,x1,y1,x2,y2){
+    return x1<=x&&x<=x2&&y1<=y&&y<=y2;
+}
