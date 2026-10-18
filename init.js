@@ -1,7 +1,7 @@
 function tick(){
     dt=performance.now()-lastTime
     lastTime=performance.now()
-    res[0]=res[0].add(getRecA().mul(E(dt).div(E(1000))))
+    res[0]=res[0].add(getRecA().mul(E(dt).div(E(1000))).mul(E(kg)))
     draw()
     requestAnimationFrame(tick)
 }
@@ -26,13 +26,11 @@ function init(){
         mousePressed = false;
         if(!mouseMoved){
             let flag1=false
-            if(inSquare(event.clientX,event.clientY,0,0,50,50)){
-                alert("我是傻逼")
-            }
             for(let i=0;i<upg.length;i++){
                 let a=upg[i];
-                if(inSquare(event.clientX,event.clientY,a.pos[0]-borderWide+dx,a.pos[1]-borderWide+dy,
-                    a.pos[0]+borderWide+dx,a.pos[1]+borderWide+dy)){
+                if(inSquare(event.clientX,event.clientY,
+                    (a.pos[0]-borderWide)*xc+dx,(a.pos[1]-borderWide)*yc+dy,
+                    (a.pos[0]+borderWide)*xc+dx,(a.pos[1]+borderWide)*yc+dy)){
                     flag1=true
                     let flag=false;
                     if(a.need().gt(res[0])){flag=true;break;}
@@ -48,11 +46,21 @@ function init(){
             }
         }
         mouseMoved = false;
-    })
+    });
     canvas.addEventListener("mousemove",(event)=>{
         mouseX=event.clientX;
         mouseY=event.clientY;
-    })
+    });
+    canvas.addEventListener("wheel",(event)=>{
+        event.preventDefault();
+        let f=Math.pow(1.2,-(event.deltaY/166.66665649414062));
+        let nxc=Math.min(100,Math.max(0.01,xc*f));
+        let nyc=Math.min(100,Math.max(0.01,yc*f));
+        dx=event.clientX-(event.clientX-dx)*nxc/xc;
+        dy=event.clientY-(event.clientY-dy)*nyc/yc;
+        xc=nxc;
+        yc=nyc;
+    });
     tick()
     resizeCanvas()
 }
