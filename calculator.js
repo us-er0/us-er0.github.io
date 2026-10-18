@@ -1,3 +1,3 @@
-function getRecA(){
-    return E(1)
+function getRec(){
+    return [E(1)]
 }

@@ -1,7 +1,9 @@
 function tick(){
     dt=performance.now()-lastTime
     lastTime=performance.now()
-    res[0]=res[0].add(getRecA().mul(E(dt).div(E(1000))).mul(E(kg)))
+    for(let i in res){
+        res[0].nw=res[0].nw.add(getRec()[i].mul(E(dt).div(E(1000))).mul(E(kg)))
+    }
     draw()
     requestAnimationFrame(tick)
 }
@@ -33,16 +35,16 @@ function init(){
                     (a.pos[0]+borderWide)*xc+dx,(a.pos[1]+borderWide)*yc+dy)){
                     flag1=true
                     let flag=false;
-                    if(a.need().gt(res[0])){flag=true;break;}
+                    if(a.need().gt(res[0].nw)){flag=true;break;}
                     if(upg[i].nowL===upg[i].maxL){flag=true;}
                     if(!flag){
-                        res[0]=res[0].sub(a.need());
+                        res[0].nw=res[0].nw.sub(a.need());
                         upg[i].nowL++
                     }
                 }
             }
             if(!flag1){
-                res[0]=res[0].add(E(1))
+                res[0].nw=res[0].nw.add(E(1))
             }
         }
         mouseMoved = false;

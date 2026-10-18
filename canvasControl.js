@@ -3,7 +3,7 @@ function drawUpg(){
         if(upg[i].unlock===false) {
             let flag=0;
             for(let j in upg[i].pre){
-                if(upg[upg[i].pre[j]].nowL<upg[i].prel[j]){flag=1;break;}
+                if(upg[upg[i].pre[j]].nowL<upg[i].preL[j]){flag=1;break;}
             }
             if(flag===0){
                 upg[i].unlock=true
@@ -43,8 +43,10 @@ function drawBg(){
 function drawText(){
     ctx.fillStyle='#fff';
     ctx.font="normal 28px 宋体";
-    ctx.fillText(`你有${res[0].round()}焦耳能量`, canvas.width/3, innerWide*2);
-    ctx.fill();
+    for(let i of res){
+        ctx.fillText(i.text.replace("%d",i.nw), i.x, i.y);
+        ctx.fill();
+    }
 
     for(let i=0;i<upg.length;i++){
         let a=upg[i];
